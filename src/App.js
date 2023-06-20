@@ -16,14 +16,18 @@ function App() {
   const [miktar, setMiktar] = useState(0);
   const [tasks, setTasks] = useState([]);
   const createButtonAlert = index =>
-    Alert.alert('Silinecek!', 'Göreviniz siliniyor . . Umarım başarılı bir şekilde tamamlanmıştır.', [
-      {
-        text: 'İptal',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      {text: 'Tamam', onPress: () => handleDeleteTask(index)},
-    ]);
+    Alert.alert(
+      'Silinecek!',
+      'Göreviniz siliniyor . . Umarım başarılı bir şekilde tamamlanmıştır.',
+      [
+        {
+          text: 'İptal',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'Tamam', onPress: () => handleDeleteTask(index)},
+      ],
+    );
 
   const handleDeleteTask = index => {
     const newTasks = [...tasks];
@@ -43,24 +47,23 @@ function App() {
       style={styles.container2}>
       <View style={styles.container}>
         <View>
-        <View style={styles.title_container}>
-          <View style={styles.title_background}>
+          <View style={styles.title_container}>
+            <View style={styles.title_background}>
+              <Text style={styles.title}>Yapılacaklar</Text>
+              <Text style={styles.title2}>{miktar}</Text>
+            </View>
+          </View>
 
-
-
-          <Text style={styles.title}>Yapılacaklar</Text>
-          <Text style={styles.title2}>{miktar}</Text>
-        </View></View>
-
-        <View>
-          <FlatList
-            data={tasks}
-            renderItem={({item, index}) => (
-              <ToDo item={item} onPressT={() => createButtonAlert(index)} />
-            )}
-            keyExtractor={item => item + Date.now() + Math.random()}
-          />
-        </View></View>
+          <View>
+            <FlatList
+              data={tasks}
+              renderItem={({item, index}) => (
+                <ToDo item={item} onPressT={() => createButtonAlert(index)} />
+              )}
+              keyExtractor={item => item + Date.now() + Math.random()}
+            />
+          </View>
+        </View>
 
         <View style={styles.down}>
           <InputBar value={text} onWrite={setText} />
@@ -83,12 +86,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'column',
-    
-  
-
   },
   title_container: {
-    
     padding: 10,
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -115,7 +114,6 @@ const styles = StyleSheet.create({
     height: 40,
     width: 400,
     marginBottom: 10,
-
   },
 
   container2: {
@@ -144,5 +142,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-
 });
